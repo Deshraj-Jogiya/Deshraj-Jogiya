@@ -1,8 +1,8 @@
 ## Deshraj Jogiya
 
-**Data Engineer and Machine Learning Engineer** with an MS in Information Technology from Arizona State University (4.0 GPA).
-I build data pipelines, data warehouses and machine learning applications. I'm based in Tempe, Arizona, open to relocation,
-and looking for Data Engineer and ML Engineer roles.
+**Data Engineer and Machine Learning Engineer** with an MS in Information Technology from Arizona State University (4.0 GPA),
+working on data pipelines, data warehouses and machine learning applications. Based in Tempe, Arizona, open to relocation, and
+seeking Data Engineer and ML Engineer roles.
 
 [Portfolio](https://deshraj-jogiya.github.io) · [LinkedIn](https://www.linkedin.com/in/deshrajjogiya) ·
 [Email](mailto:djogiya786@gmail.com) · [Career Pilot live demo](https://demo.129-146-36-193.sslip.io)
@@ -23,13 +23,13 @@ PostgreSQL, scikit-learn, MLflow, LLM APIs.
 
 ---
 
-### Career Pilot: my job-search assistant
+### Career Pilot: job-search assistant
 
 [![tests](https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation/actions/workflows/tests.yml/badge.svg)](https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation/actions/workflows/tests.yml)
 
-I've been searching for a job for more than two years. Tracking postings, tailoring my resume and typing the same answers into
-application forms took most of each day, so I built a tool for the repetitive parts. It collects postings, scores how well each one
-fits, drafts a tailored resume and cover letter, and pre-fills the application form. I review every application and submit it myself.
+A self-hosted tool for the repetitive parts of a long job search: tracking postings, tailoring a resume for each one and typing
+the same answers into application forms. It collects postings, scores how well each one fits, drafts a tailored resume and cover
+letter, and pre-fills the application form. Every application is reviewed and submitted by a person.
 [Code](https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation) · [Live demo](https://demo.129-146-36-193.sslip.io)
 
 <picture>
@@ -37,15 +37,16 @@ fits, drafts a tailored resume and cover letter, and pre-fills the application f
   <img alt="How one job posting moves through Career Pilot: job boards, collection, fit scoring, LLM tailoring and a fact check against the profile are automated; each application then gets a human review, a Chrome extension pre-fills the form, and submission is always done by a person." src="assets/career-pilot-flow-light.svg" width="100%">
 </picture>
 
-**Problems I ran into and how I solved them**
-- **The language model sometimes added skills I don't have.** Every generated resume is now compared, by ordinary code, with my
-  profile. Anything that isn't in the profile sends the draft back for a rewrite, and if it still doesn't match, it comes to me.
-- **An early version spent far more on API calls than I expected.** Each posting now gets a free rule-based score first, only
+**Problems found in use, and the fixes**
+- **The language model sometimes added skills that aren't in the profile.** Every generated resume is now compared, by ordinary
+  code, with the profile. A claim that isn't there sends the draft back for a rewrite, and if it still doesn't match, it goes to
+  human review.
+- **An early version spent far more on API calls than planned.** Each posting now gets a free rule-based score first, only
   promising postings go to the model, and a daily spending limit is checked before every paid call.
-- **Employer sites blocked form filling from a cloud server.** Form filling moved into a browser extension that runs in my own
-  browser. Testing it on seven applicant-tracking systems turned up form types I hadn't planned for, such as Shadow DOM forms,
+- **Employer sites blocked form filling from a cloud server.** Form filling moved into a browser extension that runs in the user's
+  browser. Testing on seven applicant-tracking systems turned up form types that needed their own handling, such as Shadow DOM forms,
   hidden upload fields and decoy fields meant to catch bots, and each one now has a fix.
-- **My first location filter wrongly skipped 458 US postings.** It now removes a posting only when its location clearly names
+- **The first location filter wrongly skipped 458 US postings.** It now removes a posting only when its location clearly names
   another country.
 
 Built with FastAPI, PostgreSQL (Supabase), Alembic and a Chrome extension, hosted on an Oracle Cloud VM, with 1,100+ automated tests.
@@ -69,14 +70,14 @@ Built with FastAPI, PostgreSQL (Supabase), Alembic and a Chrome extension, hoste
 | [FinRisk Analytics Pipeline](https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline) | FastAPI scoring under 100 ms, Random Forest vs XGBoost compared in MLflow (Random Forest kept at 92% precision), fraud rules and a GraphQL layer | [![CI](https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline/actions/workflows/ci.yml) |
 | [Member Messages QA](https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system) | Semantic search with sentence embeddings, spaCy entity detection, a LlamaIndex retriever and a LangChain RAG chain behind a FastAPI endpoint | [![CI](https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system/actions/workflows/ci.yml) |
 | [Sentence Transformers + LoRA](https://github.com/Deshraj-Jogiya/sentence-transformers-llm-finetuning) | Multi-task heads on a Small BERT backbone, and LoRA fine-tuning of Qwen2.5-0.5B on a free Colab GPU | [![CI](https://github.com/Deshraj-Jogiya/sentence-transformers-llm-finetuning/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshraj-Jogiya/sentence-transformers-llm-finetuning/actions/workflows/ci.yml) |
-| [CurioSync](https://github.com/Deshraj-Jogiya/curiosync) | GitHub Actions pipeline that drafts LinkedIn posts only from my own project data; mechanical checks and a second model pass reject invented claims | [![CI](https://github.com/Deshraj-Jogiya/curiosync/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshraj-Jogiya/curiosync/actions/workflows/ci.yml) |
+| [CurioSync](https://github.com/Deshraj-Jogiya/curiosync) | GitHub Actions pipeline that drafts LinkedIn posts only from the portfolio's project data; mechanical checks and a second model pass reject invented claims | [![CI](https://github.com/Deshraj-Jogiya/curiosync/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshraj-Jogiya/curiosync/actions/workflows/ci.yml) |
 
-My analytics and full-stack projects are on my [portfolio](https://deshraj-jogiya.github.io).
+Analytics and full-stack projects are on the [portfolio](https://deshraj-jogiya.github.io).
 
 ---
 
 ### About these repositories
 
 Each repository has a README with an overview, an architecture diagram and the commands to run it. Projects built on synthetic or
-simulated data say so in their README. If you have questions or feedback on any of them, I'd be glad to hear from you on
-[LinkedIn](https://www.linkedin.com/in/deshrajjogiya) or by [email](mailto:djogiya786@gmail.com).
+simulated data say so in their README. Questions and feedback are welcome on [LinkedIn](https://www.linkedin.com/in/deshrajjogiya) or by
+[email](mailto:djogiya786@gmail.com).
