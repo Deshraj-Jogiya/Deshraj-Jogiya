@@ -1,8 +1,8 @@
 ## Deshraj Jogiya
 
-**Data Engineer and Machine Learning Engineer.** I build pipelines and warehouses that people can trust, and AI systems that are
-checked before anything they produce reaches a person. MS in Information Technology, Arizona State University (4.0 GPA).
-Based in Tempe, Arizona, open to relocation, looking for Data Engineer and ML Engineer roles.
+**Data Engineer and Machine Learning Engineer** with an MS in Information Technology from Arizona State University (4.0 GPA).
+I build data pipelines, data warehouses and machine learning applications. I'm based in Tempe, Arizona, open to relocation,
+and looking for Data Engineer and ML Engineer roles.
 
 [Portfolio](https://deshraj-jogiya.github.io) · [LinkedIn](https://www.linkedin.com/in/deshrajjogiya) ·
 [Email](mailto:djogiya786@gmail.com) · [Career Pilot live demo](https://demo.129-146-36-193.sslip.io)
@@ -12,9 +12,9 @@ PostgreSQL, scikit-learn, MLflow, LLM APIs.
 
 ---
 
-### At work
+### Experience
 
-| | Role | What changed because of my work |
+| | Role | Results |
 |---|---|---|
 | **Technoid** | Applied ML Engineer · 2025–26 | Candidate-resume matching accuracy **+25%** (GPT-4o mini, PostgreSQL); vector sync latency **−65%** after restructuring the Supabase sync layer and its row-level security |
 | **Zifatech Solutions** | Data Analyst / Data Engineer · 2025 | Multi-source ingestion **60% faster** on AWS Glue, S3 and Lambda orchestrated by Airflow; **98%+** data reliability in Snowflake with Great Expectations; manual sales reporting **−70%** |
@@ -23,42 +23,41 @@ PostgreSQL, scikit-learn, MLflow, LLM APIs.
 
 ---
 
-### Career Pilot: the system I run every day
+### Career Pilot: my job-search assistant
 
 [![tests](https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation/actions/workflows/tests.yml/badge.svg)](https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation/actions/workflows/tests.yml)
 
-I spent more than two years searching for a job and found most tools either fake their results or break. So I built my own and put
-it in production: it finds postings, scores them, tailors my resume per posting with an LLM, and pre-fills applications. **Nothing
-is ever submitted or sent without my click.**
+I've been searching for a job for more than two years. Tracking postings, tailoring my resume and typing the same answers into
+application forms took most of each day, so I built a tool for the repetitive parts. It collects postings, scores how well each one
+fits, drafts a tailored resume and cover letter, and pre-fills the application form. I review every application and submit it myself.
 [Code](https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation) · [Live demo](https://demo.129-146-36-193.sslip.io)
 
 ```mermaid
 flowchart LR
-    B[7 ATS boards + remote boards] --> I[Intake + dedup]
-    I --> S[Free mechanical score]
-    S -- clears threshold --> L[LLM match + tailoring]
-    L --> G{Non-LLM fact guardrail<br/>vs master profile}
-    G -- clean --> Q[Review queue]
-    G -- invented claim --> R[Bounded rewrite, then human review]
+    B[Job boards] --> I[Collect + remove duplicates]
+    I --> S[Free rule-based score]
+    S -- good fit --> L[LLM tailoring]
+    L --> G{Check against<br/>my profile}
+    G -- clean --> Q[My review]
+    G -- not in profile --> R[Rewrite, then my review]
     Q --> X[Chrome extension fills the form<br/>in my own browser]
     X --> H((I click Submit))
-    C[(Postgres + RLS)] --- I & Q
-    K[[Daily LLM spend cap]] -. checked before every paid call .-> L
+    C[(PostgreSQL)] --- I & Q
+    K[[Daily spending limit]] -.-> L
 ```
 
-**Decisions that shaped it**
-- **The model is never trusted with facts.** Every tailored resume is checked by plain code against my master profile; a skill or
-  number that isn't there blocks the document. It gets two corrective rewrites, then goes to me.
-- **Pay for the LLM last.** A free mechanical score runs first, so postings that can't clear the bar never cost an API call. After
-  an early rollout overspent, I added a hard daily spend cap checked before every metered call.
-- **Fill forms in the user's browser, not on a server.** Server-side Playwright on a cloud VM was blocked by employers' bot
-  protection (5 of 5 attempts, 0 fields filled). The extension runs in my own browser and asks the backend for answers, so the
-  answering logic exists once. Live testing on all 7 ATS platforms found real breakage: Shadow DOM forms, honeypot fields,
-  react-select widgets, hidden file inputs.
-- **Filters fail open.** An allow-list location filter wrongly skipped 458 US postings on its first live run. I rewrote it to
-  exclude only on a positive match against a known foreign location.
+**Problems I ran into and how I solved them**
+- **The language model sometimes added skills I don't have.** Every generated resume is now compared, by ordinary code, with my
+  profile. Anything that isn't in the profile sends the draft back for a rewrite, and if it still doesn't match, it comes to me.
+- **An early version spent far more on API calls than I expected.** Each posting now gets a free rule-based score first, only
+  promising postings go to the model, and a daily spending limit is checked before every paid call.
+- **Employer sites blocked form filling from a cloud server.** Form filling moved into a browser extension that runs in my own
+  browser. Testing it on seven applicant-tracking systems turned up form types I hadn't planned for, such as Shadow DOM forms,
+  hidden upload fields and decoy fields meant to catch bots, and each one now has a fix.
+- **My first location filter wrongly skipped 458 US postings.** It now removes a posting only when its location clearly names
+  another country.
 
-FastAPI · PostgreSQL (Supabase, row-level security on every table) · Alembic · Oracle Cloud VM + Caddy · 1,100+ pytest tests in CI
+Built with FastAPI, PostgreSQL (Supabase), Alembic and a Chrome extension, hosted on an Oracle Cloud VM, with 1,100+ automated tests.
 
 ---
 
@@ -66,7 +65,7 @@ FastAPI · PostgreSQL (Supabase, row-level security on every table) · Alembic �
 
 | Project | What it shows | Status |
 |---|---|---|
-| [Job Market Lakehouse](https://github.com/Deshraj-Jogiya/job-market-lakehouse) | PySpark join, aggregation and `dense_rank()` over 60k postings, 11 Great Expectations checks that fail the run, an Airflow DAG run end to end, and a Scala Spark job | [![CI](https://github.com/Deshraj-Jogiya/job-market-lakehouse/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshraj-Jogiya/job-market-lakehouse/actions/workflows/ci.yml) |
+| [Job Market Lakehouse](https://github.com/Deshraj-Jogiya/job-market-lakehouse) | PySpark join, aggregation and `dense_rank()` over 60k postings, 11 Great Expectations data-quality checks on the output, an Airflow DAG and a Scala Spark job | [![CI](https://github.com/Deshraj-Jogiya/job-market-lakehouse/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshraj-Jogiya/job-market-lakehouse/actions/workflows/ci.yml) |
 | [Job Search dbt Warehouse](https://github.com/Deshraj-Jogiya/job-search-dbt-warehouse) | Dimensional model on a live Databricks SQL warehouse: date spine, incremental `merge` snapshot, 15 dbt tests including two business-rule tests | dbt run/test in CI |
 | [TalentVenue EventIntel](https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel) | Bootcamp capstone on real business data: SQL Server to ADLS Gen2 and Snowflake provisioned with Terraform, Delta and Iceberg tables, a Random Forest (0.87 ROC-AUC) served as a Snowflake UDF | [![CI](https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel/actions/workflows/ci.yml) |
 | [Reactive Job Ingest Gateway](https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway) | Non-blocking ingestion on Spring WebFlux and R2DBC, republished as a live Server-Sent Events stream | [![CI](https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway/actions/workflows/ci.yml) |
@@ -81,13 +80,12 @@ FastAPI · PostgreSQL (Supabase, row-level security on every table) · Alembic �
 | [Sentence Transformers + LoRA](https://github.com/Deshraj-Jogiya/sentence-transformers-llm-finetuning) | Multi-task heads on a Small BERT backbone, and LoRA fine-tuning of Qwen2.5-0.5B on a free Colab GPU | [![CI](https://github.com/Deshraj-Jogiya/sentence-transformers-llm-finetuning/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshraj-Jogiya/sentence-transformers-llm-finetuning/actions/workflows/ci.yml) |
 | [CurioSync](https://github.com/Deshraj-Jogiya/curiosync) | GitHub Actions pipeline that drafts LinkedIn posts only from my own project data; mechanical checks and a second model pass reject invented claims | [![CI](https://github.com/Deshraj-Jogiya/curiosync/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshraj-Jogiya/curiosync/actions/workflows/ci.yml) |
 
-All projects, including analytics and full-stack work, are on my [portfolio](https://deshraj-jogiya.github.io).
+My analytics and full-stack projects are on my [portfolio](https://deshraj-jogiya.github.io).
 
 ---
 
-### How I work
+### About these repositories
 
-- **Tests run in CI on every repo I list here**, and a failing check stops the pipeline instead of logging a warning.
-- **Data is labeled honestly.** When a project uses synthetic or simulated data, its README says so.
-- **I verify against the real thing.** The dbt models run on a live warehouse, the ArcGIS tests call the live APIs, and the extension
-  was tested on real application forms, because that is where most of my bugs turned up.
+Each repository has a README with an overview, an architecture diagram and the commands to run it. Projects built on synthetic or
+simulated data say so in their README. If you have questions or feedback on any of them, I'd be glad to hear from you on
+[LinkedIn](https://www.linkedin.com/in/deshrajjogiya) or by [email](mailto:djogiya786@gmail.com).
