@@ -34,7 +34,7 @@ fits, drafts a tailored resume and cover letter, and pre-fills the application f
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/career-pilot-flow-dark.svg">
-  <img alt="How one job posting moves through Career Pilot: job boards, collect, fit score, LLM tailoring and a fact check against my profile are automated; I review each application, a Chrome extension pre-fills the form, and I click Submit myself." src="assets/career-pilot-flow-light.svg" width="100%">
+  <img alt="How one job posting moves through Career Pilot: job boards, collection, fit scoring, LLM tailoring and a fact check against the profile are automated; each application then gets a human review, a Chrome extension pre-fills the form, and submission is always done by a person." src="assets/career-pilot-flow-light.svg" width="100%">
 </picture>
 
 **Problems I ran into and how I solved them**
