@@ -34,14 +34,17 @@ fits, drafts a tailored resume and cover letter, and pre-fills the application f
 
 ```mermaid
 flowchart TD
-    A[Job boards] --> B[Collect postings and remove duplicates]
-    B --> C[Free rule-based fit score]
-    C -- good fit --> D[LLM drafts a tailored resume and cover letter]
-    D --> E{Does every claim match my profile?}
-    E -- no --> D
-    E -- yes --> F[I review the application]
-    F --> G[Browser extension pre-fills the form]
-    G --> H[I submit it myself]
+    B[Job boards] --> I[Collect + remove duplicates]
+    C[(PostgreSQL)] --- I
+    I --> S[Free rule-based score]
+    S -- good fit --> L[LLM tailoring]
+    K[[Daily spending limit]] -.-> L
+    L --> G{Check against<br/>my profile}
+    G -- not in profile --> R[Rewrite, then my review]
+    G -- clean --> Q[My review]
+    R --> Q
+    Q --> X[Chrome extension fills the form<br/>in my own browser]
+    X --> H((I click Submit))
 ```
 
 **Problems I ran into and how I solved them**
