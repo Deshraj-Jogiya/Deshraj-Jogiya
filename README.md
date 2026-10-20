@@ -33,17 +33,15 @@ fits, drafts a tailored resume and cover letter, and pre-fills the application f
 [Code](https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation) · [Live demo](https://demo.129-146-36-193.sslip.io)
 
 ```mermaid
-flowchart LR
-    B[Job boards] --> I[Collect + remove duplicates]
-    I --> S[Free rule-based score]
-    S -- good fit --> L[LLM tailoring]
-    L --> G{Check against<br/>my profile}
-    G -- clean --> Q[My review]
-    G -- not in profile --> R[Rewrite, then my review]
-    Q --> X[Chrome extension fills the form<br/>in my own browser]
-    X --> H((I click Submit))
-    C[(PostgreSQL)] --- I & Q
-    K[[Daily spending limit]] -.-> L
+flowchart TD
+    A[Job boards] --> B[Collect postings and remove duplicates]
+    B --> C[Free rule-based fit score]
+    C -- good fit --> D[LLM drafts a tailored resume and cover letter]
+    D --> E{Does every claim match my profile?}
+    E -- no --> D
+    E -- yes --> F[I review the application]
+    F --> G[Browser extension pre-fills the form]
+    G --> H[I submit it myself]
 ```
 
 **Problems I ran into and how I solved them**
