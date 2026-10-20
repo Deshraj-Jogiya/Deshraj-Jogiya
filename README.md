@@ -32,20 +32,10 @@ application forms took most of each day, so I built a tool for the repetitive pa
 fits, drafts a tailored resume and cover letter, and pre-fills the application form. I review every application and submit it myself.
 [Code](https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation) · [Live demo](https://demo.129-146-36-193.sslip.io)
 
-```mermaid
-flowchart TD
-    B[Job boards] --> I[Collect + remove duplicates]
-    C[(PostgreSQL)] --- I
-    I --> S[Free rule-based score]
-    S -- good fit --> L[LLM tailoring]
-    K[[Daily spending limit]] -.-> L
-    L --> G{Check against<br/>my profile}
-    G -- not in profile --> R[Rewrite, up to two tries]
-    G -- clean --> Q[My review]
-    R --> Q
-    Q --> X[Chrome extension fills the form<br/>in my own browser]
-    X --> H((I click Submit))
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/career-pilot-flow-dark.svg">
+  <img alt="How one job posting moves through Career Pilot: job boards, collect, fit score, LLM tailoring and a fact check against my profile are automated; I review each application, a Chrome extension pre-fills the form, and I click Submit myself." src="assets/career-pilot-flow-light.svg" width="100%">
+</picture>
 
 **Problems I ran into and how I solved them**
 - **The language model sometimes added skills I don't have.** Every generated resume is now compared, by ordinary code, with my
