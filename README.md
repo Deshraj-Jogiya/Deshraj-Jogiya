@@ -40,7 +40,7 @@ flowchart TD
     S -- good fit --> L[LLM tailoring]
     K[[Daily spending limit]] -.-> L
     L --> G{Check against<br/>my profile}
-    G -- not in profile --> R[Rewrite, then my review]
+    G -- not in profile --> R[Rewrite, up to two tries]
     G -- clean --> Q[My review]
     R --> Q
     Q --> X[Chrome extension fills the form<br/>in my own browser]
