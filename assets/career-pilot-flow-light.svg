@@ -15,23 +15,23 @@
 <rect x="396" y="70" width="164" height="98" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1.2"/>
 <text x="410" y="92" font-size="11" font-weight="700" letter-spacing="1.1" fill="#0f766e">AUTOMATED</text>
 <text x="410" y="115" font-size="18" font-weight="700" fill="#1f2328">Fit score</text>
-<text x="410" y="136" font-size="13.5" fill="#59636e">free rule-based score,</text>
-<text x="410" y="153" font-size="13.5" fill="#59636e">only good fits go on</text>
+<text x="410" y="136" font-size="13.5" fill="#59636e">free rule-based match</text>
+<text x="410" y="153" font-size="13.5" fill="#59636e">to the master profile</text>
 <path d="M369 119.0H392" stroke="#8c959f" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
 <rect x="590" y="70" width="164" height="98" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1.2"/>
 <text x="604" y="92" font-size="11" font-weight="700" letter-spacing="1.1" fill="#0f766e">AUTOMATED</text>
 <text x="604" y="115" font-size="18" font-weight="700" fill="#1f2328">LLM tailoring</text>
 <text x="604" y="136" font-size="13.5" fill="#59636e">resume + cover letter,</text>
-<text x="604" y="153" font-size="13.5" fill="#59636e">daily spending limit</text>
+<text x="604" y="153" font-size="13.5" fill="#59636e">within a daily budget</text>
 <path d="M563 119.0H586" stroke="#8c959f" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
 <rect x="784" y="70" width="164" height="98" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1.2"/>
 <text x="798" y="92" font-size="11" font-weight="700" letter-spacing="1.1" fill="#0f766e">AUTOMATED</text>
 <text x="798" y="115" font-size="18" font-weight="700" fill="#1f2328">Fact check</text>
 <text x="798" y="136" font-size="13.5" fill="#59636e">every claim checked</text>
-<text x="798" y="153" font-size="13.5" fill="#59636e">against the profile</text>
+<text x="798" y="153" font-size="13.5" fill="#59636e">against master profile</text>
 <path d="M757 119.0H780" stroke="#8c959f" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
 <path d="M866.0 68C866.0 40 672.0 40 672.0 66" stroke="#d97706" stroke-width="1.6" stroke-dasharray="5 4" fill="none" marker-end="url(#a)"/>
-<text x="769.0" y="36" text-anchor="middle" font-size="13" fill="#59636e">claim not in profile: rewrite, up to two tries</text>
+<text x="769.0" y="36" text-anchor="middle" font-size="13" fill="#59636e">claim not in master profile: rewrite, up to two tries</text>
 <rect x="784" y="232" width="164" height="98" rx="10" fill="#fff4e5" stroke="#d97706" stroke-width="1.2"/>
 <text x="798" y="254" font-size="11" font-weight="700" letter-spacing="1.1" fill="#b45309">HUMAN STEP</text>
 <text x="798" y="277" font-size="18" font-weight="700" fill="#1f2328">Review</text>

@@ -12,14 +12,14 @@ PostgreSQL, scikit-learn, MLflow, LLM APIs.
 
 ---
 
-### Experience
+### Recent experience
 
 | | Role | Results |
 |---|---|---|
-| **Technoid** | Applied ML Engineer · 2025–26 | Candidate-resume matching accuracy **+25%** (GPT-4o mini, PostgreSQL); vector sync latency **−65%** after restructuring the Supabase sync layer and its row-level security |
-| **Zifatech Solutions** | Data Analyst / Data Engineer · 2025 | Multi-source ingestion **60% faster** on AWS Glue, S3 and Lambda orchestrated by Airflow; **98%+** data reliability in Snowflake with Great Expectations; manual sales reporting **−70%** |
+| **Technoid** | Applied ML Engineer · 2025–26 | Candidate-resume recommendation accuracy **+25%** (GPT-4o mini, PostgreSQL); vector sync latency **−65%** after restructuring the Supabase sync layer and its row-level security |
+| **Zifatech Solutions** | Data Analyst / Data Engineer · 2025 | Multi-source ingestion **60% faster** on AWS Glue, S3 and Lambda orchestrated by Airflow; **98%+** data reliability in Snowflake with Great Expectations; manual sales-reporting effort **−70%** |
 | **Arizona State University** | Data Engineer & ML Research Assistant · 2024–25 | Real-time streaming pipeline at **99.9%** uptime for 5,000 concurrent users, throughput **+35%** |
-| **Objectways** | Teleoperation Data Collection · 2026– | Dataset accuracy **+20%** across 10,000+ robotics sensor samples used for model training |
+| **Objectways** | Teleoperation Data Collection · 2026– | Accuracy and consistency of robotics training data **+20%** across 10,000+ validated sensor samples |
 
 ---
 
@@ -28,26 +28,28 @@ PostgreSQL, scikit-learn, MLflow, LLM APIs.
 [![tests](https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation/actions/workflows/tests.yml/badge.svg)](https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation/actions/workflows/tests.yml)
 
 A self-hosted tool for the repetitive parts of a long job search: tracking postings, tailoring a resume for each one and typing
-the same answers into application forms. It collects postings, scores how well each one fits, drafts a tailored resume and cover
-letter, and pre-fills the application form. Every application is reviewed and submitted by a person.
+the same answers into application forms. It collects postings, scores how well each posting matches the candidate's master profile
+(the single record of real skills, experience and education that every generated document is checked against), drafts a tailored
+resume and cover letter, and pre-fills the application form. Every application is reviewed and submitted by a person.
 [Code](https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation) · [Live demo](https://demo.129-146-36-193.sslip.io)
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/career-pilot-flow-dark.svg">
-  <img alt="How one job posting moves through Career Pilot: job boards, collection, fit scoring, LLM tailoring and a fact check against the profile are automated; each application then gets a human review, a Chrome extension pre-fills the form, and submission is always done by a person." src="assets/career-pilot-flow-light.svg" width="100%">
+  <img alt="How one job posting moves through Career Pilot: job boards, collection, fit scoring, LLM tailoring and a fact check against the master profile are automated; each application then gets a human review, a Chrome extension pre-fills the form, and submission is always done by a person." src="assets/career-pilot-flow-light.svg" width="100%">
 </picture>
 
 **Problems found in use, and the fixes**
-- **The language model sometimes added skills that aren't in the profile.** Every generated resume is now compared, by ordinary
-  code, with the profile. A claim that isn't there sends the draft back for a rewrite, and if it still doesn't match, it goes to
-  human review.
-- **An early version spent far more on API calls than planned.** Each posting now gets a free rule-based score first, only
-  promising postings go to the model, and a daily spending limit is checked before every paid call.
-- **Employer sites blocked form filling from a cloud server.** Form filling moved into a browser extension that runs in the user's
-  browser. Testing on seven applicant-tracking systems turned up form types that needed their own handling, such as Shadow DOM forms,
-  hidden upload fields and decoy fields meant to catch bots, and each one now has a fix.
-- **The first location filter wrongly skipped 458 US postings.** It now removes a posting only when its location clearly names
-  another country.
+- **The language model sometimes listed skills the candidate doesn't have.** Each generated resume is now checked by ordinary code,
+  not another model, against the master profile. A skill or claim missing from the master profile sends the draft back for a
+  rewrite, up to two times; if it still doesn't match, the draft is held for human review.
+- **An early version spent far more on API calls than planned.** Each posting now gets a free rule-based score first; a posting
+  that can't reach the tailoring threshold is never sent to the model, and a daily spending limit is checked before every paid call.
+- **Some employer sites blocked automated form filling from the cloud server.** Form filling moved into a Chrome extension that
+  runs in the job seeker's own browser. Testing it on seven applicant-tracking systems found form types that needed specific
+  handling: fields inside Shadow DOM, upload fields hidden behind custom buttons, and hidden decoy fields meant to catch bots, which
+  are now left empty.
+- **The first location filter wrongly excluded 458 US postings** whose location was written in an unexpected form, such as just
+  "US" or a county name. It now excludes a posting only when its location names a country outside the US and Canada.
 
 Built with FastAPI, PostgreSQL (Supabase), Alembic and a Chrome extension, hosted on an Oracle Cloud VM, with 1,100+ automated tests.
 
@@ -57,8 +59,8 @@ Built with FastAPI, PostgreSQL (Supabase), Alembic and a Chrome extension, hoste
 
 | Project | What it shows | Status |
 |---|---|---|
-| [Job Market Lakehouse](https://github.com/Deshraj-Jogiya/job-market-lakehouse) | PySpark join, aggregation and `dense_rank()` over 60k postings, 11 Great Expectations data-quality checks on the output, an Airflow DAG and a Scala Spark job | [![CI](https://github.com/Deshraj-Jogiya/job-market-lakehouse/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshraj-Jogiya/job-market-lakehouse/actions/workflows/ci.yml) |
-| [Job Search dbt Warehouse](https://github.com/Deshraj-Jogiya/job-search-dbt-warehouse) | Dimensional model on a live Databricks SQL warehouse: date spine, incremental `merge` snapshot, 15 dbt tests including two business-rule tests | dbt run/test in CI |
+| [Job Market Lakehouse](https://github.com/Deshraj-Jogiya/job-market-lakehouse) | PySpark join, aggregation and `dense_rank()` over 60k synthetic postings, 11 Great Expectations data-quality checks on the output, an Airflow DAG and a Scala Spark job | [![CI](https://github.com/Deshraj-Jogiya/job-market-lakehouse/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshraj-Jogiya/job-market-lakehouse/actions/workflows/ci.yml) |
+| [Job Search dbt Warehouse](https://github.com/Deshraj-Jogiya/job-search-dbt-warehouse) | Dimensional model on a Databricks SQL warehouse: date spine, incremental `merge` snapshot, and 22 dbt tests including two business-rule tests | dbt build on Databricks |
 | [TalentVenue EventIntel](https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel) | Bootcamp capstone on real business data: SQL Server to ADLS Gen2 and Snowflake provisioned with Terraform, Delta and Iceberg tables, a Random Forest (0.87 ROC-AUC) served as a Snowflake UDF | [![CI](https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel/actions/workflows/ci.yml) |
 | [Reactive Job Ingest Gateway](https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway) | Non-blocking ingestion on Spring WebFlux and R2DBC, republished as a live Server-Sent Events stream | [![CI](https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway/actions/workflows/ci.yml/badge.svg)](https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway/actions/workflows/ci.yml) |
 
@@ -78,6 +80,6 @@ Analytics and full-stack projects are on the [portfolio](https://deshraj-jogiya.
 
 ### About these repositories
 
-Each repository has a README with an overview, an architecture diagram and the commands to run it. Projects built on synthetic or
-simulated data say so in their README. Questions and feedback are welcome on [LinkedIn](https://www.linkedin.com/in/deshrajjogiya) or by
+Each project README covers what the project does, how it is built and how to run it, and says where its data comes from: generated,
+simulated, sample or real. Questions and feedback are welcome on [LinkedIn](https://www.linkedin.com/in/deshrajjogiya) or by
 [email](mailto:djogiya786@gmail.com).
